@@ -4,38 +4,29 @@
 double dec,pow,wpow,fac,wfac;
 double wynik;
 double k;
-void power(double pow, double dec)
-{
+void power(double pow, double dec){
     int i;
-    for(i=0; i<pow; ++i)
-    {
-        if(i==0)
-        {
+    for(i=0; i<pow; ++i){
+        if(i==0){
         wpow=dec;
         }
-        else
-        {
+        else{
         wpow=wpow*dec;
         }
     }
 }
-void factorial(double fac)
-{
+void factorial(double fac){
     int i;
-    for(i=0;i<fac;++i)
-    {
-        if(i==0)
-        {
+    for(i=0;i<fac;++i){
+        if(i==0){
             wfac=1;
         }
-        else
-        {
+        else{
             wfac*=i+1;
         }
     }
 }
-int main()
-{
+int main(){
     //userin();
     double x,y, res=0;
     printf("Podaj x: ");
@@ -43,12 +34,10 @@ int main()
     for(k=0; k<5; k++)
     {
         //x*=3.14159265359;
-        if (k==0)
-        {
+        if (k==0){
         res = x;
         }
-        else
-        {
+        else{
             power(k, -1);
             fac = 2*k+1;
             factorial(fac);
