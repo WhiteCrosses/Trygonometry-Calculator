@@ -1,76 +1,100 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double dec,pow,wpow,fac,wfac;
-double wynik;
 double k;
-void power(double pow, double dec){
+double power(double pow, double dec)
+{
+    double wpow;
     int i;
-    for(i=0; i<pow; ++i){
-        if(i==0){
+    for(i=0; i<pow; ++i)
+    {
+        if(i==0)
+        {
         wpow=dec;
         }
-        else{
+        else
+        {
         wpow=wpow*dec;
         }
     }
+    return wpow;
 }
-void factorial(double fac){
+double factorial(double fac)
+{
+    double wfac;
     int i;
-    for(i=0;i<fac;++i){
-        if(i==0){
+    for(i=0;i<fac;++i)
+    {
+        if(i==0)
+        {
             wfac=1;
         }
-        else{
+        else
+        {
             wfac*=i+1;
         }
     }
+    return wfac;
 }
-int main(){
-    //userin();
-    double x,y, res=0;
-    printf("Podaj x: ");
-    scanf("%lf", &x);
+
+
+double sinus(double b)
+{
+    double wynik=0;
+    double y=0, res=0;
     for(k=0; k<5; k++)
     {
-        //x*=3.14159265359;
-        if (k==0){
-        res = x;
+        if (k==0)
+        {
+        res = b;
         }
-        else{
-            power(k, -1);
-            fac = 2*k+1;
-            factorial(fac);
-            y = wpow;
-            printf("\nk = %.10lf",k);
-            printf("\n(-1)^k = %.10lf", y);
-            printf("\n(2k+1)! = %.10lf", wfac);
-            power(fac, x);
-            printf("\n(x)^(2k+1) = %.10lf", wpow);
-            wynik=y*wpow;
-            printf("\nwynik gora = %.10lf", wynik);
-            wynik /=wfac;
-            printf("\nwynik razem = %.10lf", wynik);
+        else
+        {
+            y = power(k, -1);
+            wynik=y*power(factorial(2*k+1), b);
+            wynik /=factorial(2*k+1);
             res += wynik;
-            printf("\nres = %.5lf\n", res);
         }
     }
+    k=0;
+    return res;
+}
+
+double cosinus(double b)
+{
+    double wynik=0;
+    double y=0, res=0;
+    for(k=0; k<5; k++)
+    {
+        if (k==0)
+        {
+        res = 1;
+        }
+        else
+        {
+            y = power(k, -1);
+            wynik=y*power(factorial(2*k), b);
+            wynik /=factorial(2*k);
+            res += wynik;
+        }
+    }
+    k=0;
+    return res;
+}
+
+int main()
+{
+
+    printf("z = a*e^(b*j*pi)\n\n");
+    double b,a,m,n,pi=3.141592654;
+    printf("Podaj a: ");
+    scanf("%lf", &a);
+    printf("Podaj b: ");
+    scanf("%lf", &b);
+    b*=pi;
+    m=a*sinus(b);
+    n=a*cosinus(b);
+    printf("z = %.5lf + i*%.5lf", n,m);
     return 0;
 }
 
-
-/*
-{
-    double pi = 3.14159265;
-    double a, b, m, n;
-    printf("ae^(ib*pi)");
-    scanf("Podaj a: %lf", &a);
-    scanf("Podaj b: %lf", &b);
-
-    b*=pi;
-    m = a*sin(b);
-    n = a*cos(b);
-
-    printf("z = %lf + i%lf", n, m);
-    return 0;
-} */
